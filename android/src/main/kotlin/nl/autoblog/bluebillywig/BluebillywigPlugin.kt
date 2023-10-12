@@ -14,21 +14,20 @@ class BluebillywigPlugin : FlutterPlugin, MethodCallHandler {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
 
-      channel = MethodChannel(flutterPluginBinding.getBinaryMessenger(), "bluebillywig")
       flutterPluginBinding
           .platformViewRegistry
-          .registerViewFactory("<bbw-video>", BbwVideoFactory(channel))
+          .registerViewFactory("<bbw-video>", BbwVideoFactory())
 
+  }
+
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+      channel.setMethodCallHandler(null)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
       when (call.method) {
           else -> result.notImplemented()
       }
-  }
-
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-      channel.setMethodCallHandler(null)
   }
 
 }

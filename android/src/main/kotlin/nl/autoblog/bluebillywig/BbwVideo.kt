@@ -2,8 +2,10 @@ package nl.autoblog.bluebillywig
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.bluebillywig.bbnativeplayersdk.BBNativePlayer
 import com.bluebillywig.bbnativeplayersdk.BBNativePlayerView
@@ -35,7 +37,16 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
         val inflater =
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         playerContainer = inflater.inflate(player_container, null, false) as LinearLayout
-        playerContainer.setBackgroundColor(Color.BLACK)
+        playerContainer.setBackgroundColor(Color.RED)
+        val width: Int? = creationParams?.get("width") as Int
+        val height: Int? = creationParams?.get("height") as Int
+        if (height != null && width != null) {
+            Log.d("DHEIGHT", height.toString())
+            val params: ViewGroup.LayoutParams = playerContainer.layoutParams
+            params.height = height
+            params.width = width
+            playerContainer.layoutParams = params
+        }
 
         val url = creationParams?.get("url")
         if (url is String) {
@@ -48,7 +59,7 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
                 playerOptions
             )
 
-            playerContainer.addView(playerView)
+            // playerContainer.addView(playerView)
         }
     }
 }
