@@ -17,16 +17,10 @@ import io.flutter.plugin.platform.PlatformView
 internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) : PlatformView, BBNativePlayerViewDelegate {
     private var playerContainer: LinearLayout
     private lateinit var playerView: BBNativePlayerView
+    private val textView: TextView
 
     override fun getView(): View {
-        return playerContainer
-    }
-
-    public fun pauseVideo(): Boolean {
-        if ( playerView != null ) {
-            playerView.callApiMethod(ApiMethod.pause, null)
-        }
-        return true
+        return textView
     }
 
     override fun dispose() {
@@ -34,19 +28,25 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
     }
 
     init {
-        val inflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        playerContainer = inflater.inflate(player_container, null, false) as LinearLayout
-        playerContainer.setBackgroundColor(Color.RED)
-        val width: Int? = creationParams?.get("width") as Int
-        val height: Int? = creationParams?.get("height") as Int
-        if (height != null && width != null) {
-            Log.d("DHEIGHT", height.toString())
-            val params: ViewGroup.LayoutParams = playerContainer.layoutParams
-            params.height = height
-            params.width = width
-            playerContainer.layoutParams = params
-        }
+        //  val inflater =
+        //      context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        //  playerContainer = inflater.inflate(player_container, null, false) as LinearLayout
+        //  playerContainer.setBackgroundColor(Color.RED)
+
+        //  val width: Int? = creationParams?.get("width") as Int
+        //  val height: Int? = creationParams?.get("height") as Int
+        //  if (height != null && width != null) {
+        //      Log.d("DHEIGHT", height.toString())
+        //      val params: ViewGroup.LayoutParams = playerContainer.layoutParams
+        //      params.height = height
+        //      params.width = width
+        //      playerContainer.layoutParams = params
+        //  }
+
+        textView = TextView(context)
+        textView.textSize = 72f
+        textView.setBackgroundColor(Color.rgb(255, 255, 255))
+        textView.text = "Rendered on a native Android view (id: $id)"
 
         val url = creationParams?.get("url")
         if (url is String) {
@@ -54,12 +54,11 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
             val playerOptions = mapOf("noChromeCast" to true)
             playerView = BBNativePlayer.createPlayerView(
                 context,
-                // test url is "https://demo.bbvms.com/p/native_sdk_inoutview/c/4256635.json",
                 url,
                 playerOptions
             )
 
-            // playerContainer.addView(playerView)
+            playerContainer.addView(playerView)
         }
     }
 }
