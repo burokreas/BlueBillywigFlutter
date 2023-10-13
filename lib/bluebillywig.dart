@@ -21,7 +21,7 @@ class BlueBillyWigPlayer extends StatefulWidget {
 
 class _BlueBillyWigPlayerState extends State<BlueBillyWigPlayer> {
   // This is used in the platform side to register the view.
-  static const viewType = '<bbw-video>';
+  static const viewType = 'com.bluebillywig.player/view';
   // static const platform = MethodChannel('com.opacha.autoblog/videoplayer');
 
   Map<String, dynamic> creationParams = <String, dynamic>{};
