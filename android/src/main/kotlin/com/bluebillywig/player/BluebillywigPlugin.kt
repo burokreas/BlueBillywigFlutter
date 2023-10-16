@@ -11,25 +11,28 @@ import io.flutter.plugin.common.MethodChannel.Result
 
 class BluebillywigPlugin : FlutterPlugin, MethodCallHandler {
 
-  private lateinit var channel: MethodChannel
+    private lateinit var channel: MethodChannel
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "bluebillywig")
+        channel.setMethodCallHandler(this)
 
         Log.d("BBWPLUGIN", "Attached to engine");
-      flutterPluginBinding
-          .platformViewRegistry
-          .registerViewFactory("com.bluebillywig.player/view", BbwVideoFactory())
+        flutterPluginBinding
+            .platformViewRegistry
+            .registerViewFactory("com.bluebillywig.player/view", BbwVideoFactory())
 
-  }
+    }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-      channel.setMethodCallHandler(null)
-  }
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        channel.setMethodCallHandler(null)
+    }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-      when (call.method) {
-          else -> result.notImplemented()
-      }
-  }
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+        when (call.method) {
+            else -> result.notImplemented()
+        }
+    }
 
 }
