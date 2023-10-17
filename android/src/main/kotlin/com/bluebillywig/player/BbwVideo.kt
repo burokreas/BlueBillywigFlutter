@@ -34,11 +34,11 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
         val url = creationParams?.get("url")
         if (url is String) {
 
-            val playerOptions = mapOf("noChromeCast" to true)
+            // val playerOptions = mapOf("noChromeCast" to true, "allowCollapseExpand" to true)
             playerView = BBNativePlayer.createPlayerView(
                 context,
                 url,
-                playerOptions
+                // playerOptions
             )
 
             playerContainer.addView(playerView)
@@ -54,4 +54,10 @@ internal class BbwVideo(context: Context, creationParams: Map<String?, Any?>?) :
 
         }
     }
+
+
+    override fun didRequestExpand(playerView: BBNativePlayerView) {
+        Log.d("BBWPLUGIN", "Expand requested")
+    }
+
 }

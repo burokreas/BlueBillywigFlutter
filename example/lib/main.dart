@@ -30,10 +30,6 @@ class BbwTestHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final d = MediaQuery.of(context).devicePixelRatio;
-    final w = MediaQuery.of(context).size.width * d;
-    final h = w * 9 / 16;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -42,8 +38,7 @@ class BbwTestHomePage extends StatelessWidget {
       body: Center(
         child: BlueBillyWigPlayer(
           jsonUrl: 'https://autoblog.bbvms.com/p/autoblog_yt/c/5652842.json',
-          width: w,
-          height: h,
+          width: MediaQuery.of(context).size.width,
         ),
       ),
     );

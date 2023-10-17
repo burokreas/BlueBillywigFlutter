@@ -6,14 +6,12 @@ import 'package:flutter/services.dart';
 
 class BlueBillyWigPlayer extends StatefulWidget {
   const BlueBillyWigPlayer(
-      {required this.jsonUrl,
-      required this.width,
-      required this.height,
-      super.key});
+      {required this.jsonUrl, required this.width, super.key});
 
   final String jsonUrl;
   final double width;
-  final double height;
+
+  static const aspectRatio = 9 / 16;
 
   @override
   State<BlueBillyWigPlayer> createState() => _BlueBillyWigPlayerState();
@@ -22,20 +20,11 @@ class BlueBillyWigPlayer extends StatefulWidget {
 class _BlueBillyWigPlayerState extends State<BlueBillyWigPlayer> {
   // This is used in the platform side to register the view.
   static const viewType = 'com.bluebillywig.player/view';
-  // static const platform = MethodChannel('com.opacha.autoblog/videoplayer');
-
-  Map<String, dynamic> creationParams = <String, dynamic>{};
+  static const platform = MethodChannel('com.bluebillywig.player/channel');
 
   @override
   void initState() {
     super.initState();
-
-    // Pass parameters to the platform side.
-    creationParams = <String, dynamic>{
-      'url': widget.jsonUrl,
-      'height': widget.height,
-      'width': widget.width,
-    };
   }
 
   @override
@@ -43,21 +32,30 @@ class _BlueBillyWigPlayerState extends State<BlueBillyWigPlayer> {
     super.dispose();
   }
 
+  void pauseVideo() async {
+    try {
+      await platform.invokeMethod('pauseVideo');
+    } on PlatformException catch (e) {
+      debugPrint('Could not pause video: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return AndroidBBWWidget(
-          height: widget.height,
+          aspectRatio: BlueBillyWigPlayer.aspectRatio,
+          width: widget.width,
           viewType: viewType,
-          creationParams: creationParams,
+          jsonUrl: widget.jsonUrl,
         );
       case TargetPlatform.iOS:
         return IOsBBWWidget(
-          height: widget.height,
           width: widget.width,
           viewType: viewType,
-          creationParams: creationParams,
+          aspectRatio: BlueBillyWigPlayer.aspectRatio,
+          jsonUrl: widget.jsonUrl,
         );
       case TargetPlatform.fuchsia:
         return const Text('Videoplayer not supported on Fuchsia.');
@@ -73,22 +71,35 @@ class _BlueBillyWigPlayerState extends State<BlueBillyWigPlayer> {
 
 class AndroidBBWWidget extends StatelessWidget {
   const AndroidBBWWidget({
-    required this.height,
+    required this.aspectRatio,
+    required this.jsonUrl,
     required this.viewType,
-    required this.creationParams,
+    required this.width,
     super.key,
   });
 
-  final double height;
+  final double aspectRatio;
+  final double width;
+  final String jsonUrl;
   final String viewType;
-  final Map<String, dynamic> creationParams;
 
   @override
   Widget build(BuildContext context) {
+    // TODO why does Android need dpr multiplication?
+    final d = MediaQuery.of(context).devicePixelRatio;
+    final w = width * d;
+
+    // Pass parameters to the platform side.
+    final creationParams = <String, dynamic>{
+      'url': jsonUrl,
+      'height': w * aspectRatio,
+      'width': w,
+    };
+
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 36),
       child: SizedBox(
-        height: height,
+        height: width * aspectRatio,
         child: PlatformViewLink(
           viewType: viewType,
           surfaceFactory: (context, controller) {
@@ -121,30 +132,36 @@ class AndroidBBWWidget extends StatelessWidget {
 
 class IOsBBWWidget extends StatelessWidget {
   const IOsBBWWidget({
-    required this.height,
-    required this.width,
+    required this.aspectRatio,
+    required this.jsonUrl,
     required this.viewType,
-    required this.creationParams,
+    required this.width,
     super.key,
   });
 
-  final double height;
+  final double aspectRatio;
   final double width;
+  final String jsonUrl;
   final String viewType;
-  final Map<String, dynamic> creationParams;
 
   @override
   Widget build(BuildContext context) {
+    final creationParams = <String, dynamic>{
+      'url': jsonUrl,
+      'height': width * aspectRatio,
+      'width': width,
+    };
+
     return Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 36),
       child: SizedBox(
-        height: height,
+        height: width * aspectRatio,
         width: width,
         child: UiKitView(
           viewType: viewType,
           layoutDirection: TextDirection.ltr,
-          // creationParams: creationParams,
-          // creationParamsCodec: const StandardMessageCodec(),
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
         ),
       ),
     );
