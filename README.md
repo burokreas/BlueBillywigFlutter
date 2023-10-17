@@ -1,6 +1,6 @@
 # bluebillywig
 
-A Flutter plugin to show BlueBillywig videos through their Android an diOS SDK.
+A Flutter plugin to show BlueBillywig videos through their Android and iOS SDK.
 
 # Getting Started
 
