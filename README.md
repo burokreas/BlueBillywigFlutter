@@ -23,6 +23,7 @@ import 'package:bluebillywig/bluebillywig.dart';
 ## Add like any Flutter widget
 
 The dimensions are calculated based on the provided width argument.
+
 Height of a video is `width * 9 / 16`.
 
 ```
