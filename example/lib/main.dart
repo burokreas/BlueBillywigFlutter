@@ -37,7 +37,7 @@ class BbwTestHomePage extends StatelessWidget {
       ),
       body: Center(
         child: BlueBillyWigPlayer(
-          jsonUrl: 'https://autoblog.bbvms.com/p/autoblog_yt/c/5652842.json',
+          jsonUrl: 'https://demo.bbvms.com/p/default_standard/c/2431946.json',
           width: MediaQuery.of(context).size.width,
         ),
       ),
