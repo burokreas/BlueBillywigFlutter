@@ -1,15 +1,39 @@
 # bluebillywig
 
-A new Flutter plugin project.
+A Flutter plugin to show BlueBillywig videos through their Android an diOS SDK.
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Add the plugin to pubspec.yaml
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+At the moment, this plugin is not available through pub.dev.
+
+```
+dependencies:
+  bluebillywig:
+    path: /local/path/to/pubspec.yaml/for/plugin/
+```
+
+## Include the plugin in your dart file
+
+```
+import 'package:bluebillywig/bluebillywig.dart';
+```
+
+## Add like any Flutter widget
+
+The dimensions are calculated based on the provided width argument.
+Height of a video is `width * 9 / 16`.
+
+```
+BlueBillyWigPlayer(
+    jsonUrl: 'https://demo.bbvms.com/p/default_standard/c/2431946.json',
+    width: MediaQuery.of(context).size.width, // width of screen
+)
+```
+
+# example app
+
+In `/example/` a small Flutter example app is provided.
+
 
