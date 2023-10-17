@@ -15,10 +15,9 @@ class BluebillywigPlugin : FlutterPlugin, MethodCallHandler {
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
 
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "bluebillywig")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.bluebillywig.player/channel")
         channel.setMethodCallHandler(this)
 
-        Log.d("BBWPLUGIN", "Attached to engine");
         flutterPluginBinding
             .platformViewRegistry
             .registerViewFactory("com.bluebillywig.player/view", BbwVideoFactory())
