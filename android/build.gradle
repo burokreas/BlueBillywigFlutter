@@ -2,7 +2,7 @@ group 'com.bluebillywig.player'
 version '1.0'
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.8.20'
 
     repositories {
         google()
@@ -26,6 +26,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace "com.bluebillywig.player"
     compileSdk 33
 
     compileOptions {

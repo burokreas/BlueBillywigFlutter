@@ -5,8 +5,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class BlueBillyWigPlayer extends StatefulWidget {
-  const BlueBillyWigPlayer(
-      {required this.jsonUrl, required this.width, super.key});
+  const BlueBillyWigPlayer({
+    required this.jsonUrl,
+    required this.width,
+    super.key,
+  });
 
   final String jsonUrl;
   final double width;
@@ -32,7 +35,7 @@ class _BlueBillyWigPlayerState extends State<BlueBillyWigPlayer> {
     super.dispose();
   }
 
-  void pauseVideo() async {
+  Future<void> pauseVideo() async {
     try {
       await platform.invokeMethod('pauseVideo');
     } on PlatformException catch (e) {
@@ -85,7 +88,7 @@ class AndroidBBWWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO why does Android need dpr multiplication?
+    // TODO(jeroensmeets): why does Android need dpr multiplication?
     final d = MediaQuery.of(context).devicePixelRatio;
     final w = width * d;
 
