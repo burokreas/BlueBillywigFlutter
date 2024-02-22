@@ -13,10 +13,10 @@ dependencies:
   plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
-  custom_lint: ^0.5.8
+  custom_lint: ^0.6.2
   flutter_test:
     sdk: flutter
-  riverpod_lint: ^2.3.7
+  riverpod_lint: ^2.3.9
   very_good_analysis: ^5.1.0
 
 flutter:
