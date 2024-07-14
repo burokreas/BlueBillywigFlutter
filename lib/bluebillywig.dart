@@ -165,6 +165,11 @@ class IOsBBWWidget extends StatelessWidget {
           layoutDirection: TextDirection.ltr,
           creationParams: creationParams,
           creationParamsCodec: const StandardMessageCodec(),
+          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              EagerGestureRecognizer.new,
+            ),
+          },
         ),
       ),
     );
