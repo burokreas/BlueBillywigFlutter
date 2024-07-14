@@ -108,8 +108,11 @@ class AndroidBBWWidget extends StatelessWidget {
           surfaceFactory: (context, controller) {
             return AndroidViewSurface(
               controller: controller as AndroidViewController,
-              gestureRecognizers: const <Factory<
-                  OneSequenceGestureRecognizer>>{},
+              gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{
+                Factory<OneSequenceGestureRecognizer>(
+                  EagerGestureRecognizer.new,
+                ),
+              },
               hitTestBehavior: PlatformViewHitTestBehavior.opaque,
             );
           },

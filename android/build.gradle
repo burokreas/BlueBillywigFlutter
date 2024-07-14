@@ -48,6 +48,6 @@ android {
     }
 
     dependencies {
-        implementation 'com.bluebillywig.bbnativeplayersdk:bbnativeplayersdk:7.123.0'
+        implementation 'com.bluebillywig.bbnativeplayersdk:bbnativeplayersdk:8.4.3'
     }
 }
