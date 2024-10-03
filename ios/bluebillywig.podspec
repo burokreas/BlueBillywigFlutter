@@ -16,7 +16,7 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'BlueBillywigNativePlayerKit-iOS', '~>8.10'
-  s.dependency 'BlueBillywigNativePlayerKit-iOS/GoogleCastSDK'
+  s.dependency 'BlueBillywigNativePlayerKit-iOS/GoogleCastSDK', '~>8.10'
   s.platform = :ios, '14.0'
 
   # Flutter.framework does not contain a i386 slice.
