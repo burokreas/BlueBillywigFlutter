@@ -16,10 +16,12 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'BlueBillywigNativePlayerKit-iOS', '~>8.10'
+  # s.dependency 'BlueBillywigNativeShared-iOS', '~>8.10'
   s.dependency 'BlueBillywigNativePlayerKit-iOS/GoogleCastSDK', '~>8.10'
-  s.platform = :ios, '14.0'
+  # s.platform = :ios, '14.0'
 
   # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386', 'ENABLE_BITCODE' => 'NO' }
-  s.swift_version = '5.0'
+  # s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386', 'ENABLE_BITCODE' => 'NO' }
+  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
+  # s.swift_version = '5.0'
 end
