@@ -1,0 +1,43 @@
+PODS:
+  - bluebillywig (0.0.1):
+    - BlueBillywigNativePlayerKit-iOS
+    - Flutter
+  - BlueBillywigNativePlayerKit-iOS (7.116.2):
+    - BlueBillywigNativeShared-iOS (= 7.116.2)
+    - google-cast-sdk-dynamic-ios-bb
+    - GoogleAds-IMA-iOS-SDK (= 3.16.3)
+  - BlueBillywigNativeShared-iOS (7.116.2)
+  - Flutter (1.0.0)
+  - google-cast-sdk-dynamic-ios-bb (4.7.0):
+    - google-cast-sdk-dynamic-ios-bb/Core (= 4.7.0)
+  - google-cast-sdk-dynamic-ios-bb/Core (4.7.0)
+  - GoogleAds-IMA-iOS-SDK (3.16.3)
+
+DEPENDENCIES:
+  - bluebillywig (from `.symlinks/plugins/bluebillywig/ios`)
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - BlueBillywigNativePlayerKit-iOS
+    - BlueBillywigNativeShared-iOS
+    - google-cast-sdk-dynamic-ios-bb
+    - GoogleAds-IMA-iOS-SDK
+
+EXTERNAL SOURCES:
+  bluebillywig:
+    :path: ".symlinks/plugins/bluebillywig/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  bluebillywig: f9d16644a4626d9f5d1af562c59c4453f7f164bb
+  BlueBillywigNativePlayerKit-iOS: 8cbfb9e67393e0a371a352717cdaea22c133d2a8
+  BlueBillywigNativeShared-iOS: 73e58ec33b79782bd55daeefc89219a67c310b9e
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  google-cast-sdk-dynamic-ios-bb: d806552ecc98e4c1dbc22d7fb7a177454fd6cb28
+  GoogleAds-IMA-iOS-SDK: 1aba71fa5b58dc463cc5b752f06e970ec7c739c1
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.14.3
